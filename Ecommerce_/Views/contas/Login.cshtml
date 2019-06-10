@@ -1,0 +1,23 @@
+﻿@model Ecommerce_.Models.conta
+
+@{
+    ViewBag.Title = "Login";
+}
+<div class="centered" >
+    <h2 class="middle">Login</h2>
+    <img src="/img/login-icon.png" class="loginIcon middle">
+    <form class"container-flex container-form" action="@Url.Action("Logar","Login")" method="post">
+        <div class"container-flex" style="flex-direction:column">
+            <label for="login" class="text-left"></label>
+            <input type="email" name="email" placeholder="E-mail">
+        </div>
+        <div class"container-flex" style="flex-direction:column">
+            <label for="password" class="text-left"></label>
+            <input type="password" name="password" placeholder="Senha">
+        </div>
+        <input type="submit" value="Logar" class="button middle button:hover" />
+    </form>
+</div>
+
+
+

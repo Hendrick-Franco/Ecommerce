@@ -1,0 +1,45 @@
+﻿body {
+    padding-top: 50px;
+    padding-bottom: 20px;
+}
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 280px;
+}
+.middle {
+    margin-left: 100px;
+}
+.searchBox {    
+    border-radius: 4px;
+    box-shadow: lightgray 2px 2px;
+    width: 400px;
+}
+.centered {
+    position: fixed;
+    top: 50%;
+    left: 60%;
+    /* bring your own prefixes */
+    transform: translate(-50%, -50%);
+}
+
+.loginIcon {
+    width: 20%;
+    height: 20%;
+}
+.button {
+    align-content: center;
+    border-radius: 4px;
+    
+}
+.button:hover {
+    background-color: lightgrey;   
+}

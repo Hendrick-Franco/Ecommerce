@@ -1,0 +1,63 @@
+﻿@model IEnumerable<Ecommerce_.Models.produto>
+
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @using (Html.BeginForm("Details", "produtoes") ) {
+     @Html.TextBox("id", null, new{ @class = "searchBox" })
+     @Html.Hidden("Details", "id")
+
+
+    <input type="submit" value="Details" />
+      }
+
+@Html.ActionLink("Create New", "Create")
+</p>
+
+
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.preco)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.descricao)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.vitrine)
+        </th>
+
+        <th>
+
+
+
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.preco)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.descricao)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.vitrine)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.produtoId }) |
+                @Html.ActionLink("Details", "Details", new { id = item.produtoId }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.produtoId })
+            </td>
+        </tr>
+    }
+
+</table>
