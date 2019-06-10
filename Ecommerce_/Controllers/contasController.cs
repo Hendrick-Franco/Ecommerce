@@ -20,7 +20,7 @@ namespace Ecommerce_.Controllers
             return View(db.Conta.ToList());
         }
 
-        // GET: contas/Details/5
+        // GET: contas/Details/5/perfil
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -34,6 +34,7 @@ namespace Ecommerce_.Controllers
             }
             return View(conta);
         }
+
 
         // GET: contas/Create
         public ActionResult Create()
@@ -69,14 +70,23 @@ namespace Ecommerce_.Controllers
 
         public ActionResult Logar(string email, string senha)
         {
-            using (var context = new Context()){
-                var SQL = context.Conta
-                    .Where(c => c.email == email && c.senha == senha).First();
+            try {
+                using (var context = new Context())
+                {
+                    var SQL = context.Conta
+                        .Where(c => c.email == email && c.senha == senha).First();
 
-                Session["Conta"] = context.Conta;
-                
+                    Session["Conta"] = context.Conta;
+
+                    
+                    return RedirectToAction($"Details/{SQL.contaId}");
+
+                }
             }
-                return View();
+            catch
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.Unauthorized);
+            }
         }
              
       

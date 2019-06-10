@@ -17,17 +17,24 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("Contas", "Index", "contas", new { area = "" }, new { @class = "navbar-brand" })
-                @Html.ActionLink("Produtos", "Index", "produtoes", new { area = "" }, new { @class = "navbar-brand" })
+                
+               
 
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
+                    <li>@Html.ActionLink("Contas", "Index", "contas")</li>
+                   <li> @Html.ActionLink("Produtos", "Index", "produtoes")</li>
                 </ul>
             </div>
-        </div>
+           </div>
     </div>
+    <ul class="nav navbar-nav navbar-right" >
+        <a href="http://localhost:55585/contas/Login"
+                <span class="glyphicon glyphicon-user"></span>
+          </a>
 
+    </ul>
     <div class="container body-content">
         @RenderBody()
         <hr />
