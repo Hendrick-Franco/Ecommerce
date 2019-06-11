@@ -1,23 +1,43 @@
 ﻿@model Ecommerce_.Models.conta
-
+@{
+    Layout = null;
+}
 @{
     ViewBag.Title = "Login";
 }
-<div class="centered" >
-    <h2 class="middle">Login</h2>
-    <img src="/img/login-icon.png" class="loginIcon middle">
-    <form class"container-flex container-form" action="@Url.Action("Logar","contas")" method="post">
-        <div class"container-flex" style="flex-direction:column">
-            <label for="login" class="text-left"></label>
-            <input type="email" name="email" placeholder="E-mail">
+<link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
+<!------ Include the above in your HEAD tag ---------->
+
+<div class="wrapper fadeInDown">
+    <div id="formContent">
+        <!-- Tabs Titles -->
+        <!-- Icon -->
+        <div class="fadeIn first">
+            <img src="/img/login-icon.png" id="icon" />
         </div>
-        <div class"container-flex" style="flex-direction:column">
-            <label for="senha" class="text-left"></label>
-            <input type="password" name="senha" placeholder="Senha">
+        <!-- Login Form -->
+        <form action="@Url.Action("Logar","contas")" method="post">
+
+            <input type="text" name="email" class="fadeIn second" placeholder="Email">
+            <input type="password" name="senha" class="fadeIn third" placeholder="Senha">
+            <input type="submit" value="Logar" class="fadeIn fourth">
+        </form>
+        <!-- Remind Passowrd -->
+        <div id="formFooter">
+            <a class="underlineHover" href="#">Esqueceu a senha ? </a>
         </div>
-        <input type="submit" value="Logar" class="button middle button:hover" />
-    </form>
-</div>
+    </div>
+
+
+
+
+
+
+
+
+
+
 
 
 
