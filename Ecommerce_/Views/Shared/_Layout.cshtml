@@ -73,7 +73,7 @@
                                                 <div class="col-lg-12">
                                                     <p>
                                                         <a href="@Url.Action(@HttpContext.Current.Session["id"].ToString(), "contas/Details")" class="btn btn-primary btn-block">Minha Conta</a>
-                                                        <a href="#" class="btn btn-danger btn-block">Trocar senha</a>
+                                                        <a href="@Url.Action(@HttpContext.Current.Session["id"].ToString(), "contas/Edit")" class="btn btn-danger btn-block">Editar Perfil</a>
                                                     </p>
                                                 </div>
                                             </div>
@@ -108,16 +108,17 @@
                                                     <div class="form-group">
                                                         <label class="sr-only" for="exampleInputPassword2">Password</label>
                                                         <input type="password" class="form-control" id="exampleInputPassword2" name="senha" placeholder="Password" required>
-                                                        <div class="help-block text-right"><a href="">Esqueceu a senha?</a></div>
+                                                        <div class="help-block text-right"><a href="@Url.Action(null, "contas/EsqueceuSenha")">Esqueceu a senha?</a></div>
                                                     </div>
                                                     <div class="form-group">
                                                         <button type="submit" class="btn btn-primary btn-block">Logar</button>
                                                     </div>
 
+                                                    
                                                 </form>
                                             </div>
                                             <div class="bottom text-center">
-                                                Novo aqui? <a href="#"><b>Cadastre-se</b></a>
+                                                Novo aqui? <a href="@Url.Action(null, "contas/Cadastro")"><b>Cadastre-se</b></a>
                                             </div>
                                         </div>
                                     </li>
