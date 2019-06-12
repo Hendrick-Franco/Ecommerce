@@ -4,15 +4,16 @@
     ViewBag.Title = "Details";
 }
 
-<h2>Details</h2>
+<h2>Detalhes da conta</h2>
 
 <div>
-    <h4>conta</h4>
+   
     <hr />
+    
     <dl class="dl-horizontal">
         <dt>
            
-            @Html.DisplayNameFor(model => model.email)
+            <label > Email</label>
         </dt>
 
         <dd>
@@ -20,7 +21,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.senha)
+            <label> Senha</label>
         </dt>
 
         <dd>
@@ -28,7 +29,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.nome)
+            <label> Nome </label>
         </dt>
 
         <dd>
@@ -36,7 +37,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.cpf)
+            <label> CPF </label>
         </dt>
 
         <dd>
@@ -45,7 +46,4 @@
 
     </dl>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.contaId }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+

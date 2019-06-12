@@ -44,7 +44,7 @@
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                     <span class="glyphicon glyphicon-user"></span>
                                     <strong>@HttpContext.Current.Session["nome"].ToString()</strong>
-                                    <span class="glyphicon glyphicon-chevron-down"></span>
+                                    <span class="caret"></span>
                                 </a>
 
                                 <ul class="dropdown-menu">
@@ -92,7 +92,7 @@
 
                         else
                         {
-                            <li><p class="navbar-text">Já tem uma conta ?</p></li>
+                           
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown"><b>Login</b> <span class="caret"></span></a>
                                 <ul id="login-dp" class="dropdown-menu">
@@ -103,11 +103,9 @@
                                                 <form class="form" role="form" method="post" action="@Url.Action("Logar", "contas")" accept-charset="UTF-8" id="login-nav">
                                                     <div class="form-group">
                                                         <label class="sr-only" for="exampleInputEmail2">Email</label>
-                                                        <input type="email" class="form-control" name="email" placeholder="Email" required>
-                                                    </div>
-                                                    <div class="form-group">
+                                                        <input type="email" class="form-control" name="email" placeholder="Email" required>                                                    
                                                         <label class="sr-only" for="exampleInputPassword2">Password</label>
-                                                        <input type="password" class="form-control" id="exampleInputPassword2" name="senha" placeholder="Password" required>
+                                                        <input type="password" class="form-control" id="exampleInputPassword2" name="senha" placeholder="Senha" required>
                                                         <div class="help-block text-right"><a href="@Url.Action(null, "contas/EsqueceuSenha")">Esqueceu a senha?</a></div>
                                                     </div>
                                                     <div class="form-group">
