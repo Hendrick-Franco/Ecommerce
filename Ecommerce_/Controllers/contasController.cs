@@ -12,17 +12,20 @@ namespace Ecommerce_.Controllers
 {
     public class contasController : Controller
     {
+       
         private Context db = new Context();
         
         // GET: contas
         public ActionResult Index()
         {
+
             return View(db.Conta.ToList());
         }
 
         // GET: contas/Details/5/perfil
         public ActionResult Details(int? id)
         {
+            
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -75,10 +78,21 @@ namespace Ecommerce_.Controllers
                 {
                     var SQL = context.Conta
                         .Where(c => c.email == email && c.senha == senha).First();
-
-                    Session["Conta"] = context.Conta;
+                   
+                    if (Session["id"] == null && Session["email"] ==null && Session["id"] == null)
+                    {
+                        Session.Timeout = 20;
+                        Session.Add("id", SQL.contaId);
+                        Session.Add("nome", SQL.nome);
+                        Session.Add("email", SQL.email);
+                    }
+                    
 
                     
+
+
+
+
                     return RedirectToAction($"Details/{SQL.contaId}");
 
                 }
@@ -88,8 +102,20 @@ namespace Ecommerce_.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.Unauthorized);
             }
         }
-             
-      
+
+        public ActionResult Deslogar()
+        {
+            if (Session["id"] != null && Session["email"] != null && Session["id"] != null)
+            {
+                Session.Timeout = 20;
+                Session.RemoveAll();
+                return View("Login");
+            }
+
+            return View();
+        }
+
+
 
         // GET: contas/Edit/5
         public ActionResult Edit(int? id)
