@@ -19,7 +19,7 @@ namespace Ecommerce_.Controllers
         public ActionResult Index()
         {
 
-            return View(db.Conta.ToList());
+            return View();
         }
 
         // GET: contas/Details/5/perfil
@@ -39,8 +39,8 @@ namespace Ecommerce_.Controllers
         }
 
 
-        // GET: contas/Create
-        public ActionResult Create()
+        // GET: contas/Cadastro
+        public ActionResult Cadastro()
         {
             return View();
         }
@@ -58,13 +58,17 @@ namespace Ecommerce_.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "contaId,email,senha,nome,cpf")] conta conta)
+        public ActionResult Cadastro([Bind(Include = "contaId,email,senha,nome,cpf")] conta conta)
         {
             if (ModelState.IsValid)
             {
                 db.Conta.Add(conta);
                 db.SaveChanges();
+
+                Logar(conta.email, conta.senha);
                 return RedirectToAction("Index");
+
+
             }
 
             return View(conta);
@@ -107,14 +111,52 @@ namespace Ecommerce_.Controllers
         {
             if (Session["id"] != null && Session["email"] != null && Session["id"] != null)
             {
-                Session.Timeout = 20;
                 Session.RemoveAll();
-                return View("Login");
+               return RedirectToAction("Index");
             }
 
             return View();
         }
 
+        // Esqueceu a senha
+        public ActionResult EsqueceuSenha(string senha, string email, string cpf) {
+          
+            try
+            {
+                using (var context = new Context())
+                {
+                    var conta = context.Conta
+                            .Where(c => c.cpf == cpf).First();
+                    if(conta != null) {
+                        conta.senha = senha;
+
+                    resetSenha(conta);
+
+                    }
+                     
+                    return RedirectToAction("Index");
+                }
+
+                
+            }
+            catch
+            {
+                return View();
+            }
+            
+        }
+        public ActionResult resetSenha([Bind(Include = "contaId,email,senha,nome,cpf")] conta conta)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Entry(conta).State = EntityState.Modified;
+                db.SaveChanges();
+                
+               
+            }
+            return View(conta);
+        }
+     
 
 
         // GET: contas/Edit/5
@@ -139,13 +181,14 @@ namespace Ecommerce_.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "contaId,email,senha,nome,cpf")] conta conta)
         {
+           
             if (ModelState.IsValid)
             {
                 db.Entry(conta).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+               
             }
-            return View(conta);
+            return RedirectToAction("Index");
         }
 
         // GET: contas/Delete/5

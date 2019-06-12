@@ -123,7 +123,7 @@
     <Content Include="Views\produtoes\Details.cshtml" />
     <Content Include="Views\produtoes\Edit.cshtml" />
     <Content Include="Views\produtoes\Index.cshtml" />
-    <Content Include="Views\contas\Create.cshtml" />
+    <Content Include="Views\contas\Cadastro.cshtml" />
     <Content Include="Views\contas\Delete.cshtml" />
     <Content Include="Views\contas\Details.cshtml" />
     <Content Include="Views\contas\Edit.cshtml" />
@@ -177,6 +177,7 @@
     <Content Include="Views\CarrinhoProdutoes\Index.cshtml" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
     <Content Include="Views\contas\Login.cshtml" />
+    <Content Include="Views\contas\EsqueceuSenha.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

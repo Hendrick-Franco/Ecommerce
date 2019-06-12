@@ -13,87 +13,134 @@
     <script src="~/Scripts/modernizr-2.6.2.js"></script>
    
 </head>
+
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-            
-               
+  
+        <div class="navbar navbar-inverse navbar-fixed-top">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
 
 
 
-            </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Contas", "Index", "contas")</li>
-                    <li> @Html.ActionLink("Produtos", "Index", "produtoes")</li>
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                            <span class="glyphicon glyphicon-user"></span>
-                            <strong>@HttpContext.Current.Session["nome"].ToString()</strong>
-                            <span class="glyphicon glyphicon-chevron-down"></span>
-                        </a>
 
-                        <ul class="dropdown-menu">
-                            <li>
-                                <div class="navbar-login">
-                                    <div class="row">
-                                        <div class="col-lg-4">
-                                            <p class="text-center">
-                                                <span class="glyphicon glyphicon-user icon-size"></span>
-                                            </p>
+
+                </div>
+                <div class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav">
+                        <li>@Html.ActionLink("Home", "Index", "contas")</li>
+                        <li> @Html.ActionLink("Produtos", "Index", "produtoes")</li>
+
+
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right">
+                        @if (@HttpContext.Current.Session["nome"] != null)
+                        {
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                    <span class="glyphicon glyphicon-user"></span>
+                                    <strong>@HttpContext.Current.Session["nome"].ToString()</strong>
+                                    <span class="glyphicon glyphicon-chevron-down"></span>
+                                </a>
+
+                                <ul class="dropdown-menu">
+                                    <li>
+                                        <div class="navbar-login">
+                                            <div class="row">
+                                                <div class="col-lg-4">
+                                                    <p class="text-center">
+                                                        <span class="glyphicon glyphicon-user icon-size"></span>
+                                                    </p>
+                                                </div>
+                                                <div class="col-lg-8">
+                                                    <p class="text-left"><strong>@HttpContext.Current.Session["nome"].ToString()</strong></p>
+                                                    <p class="text-left small">@HttpContext.Current.Session["email"].ToString()</p>
+                                                    <p class="text-left">
+                                                        <a href="@Url.Action(null, "contas/Deslogar")" class="btn btn-primary btn-block btn-sm">Deslogar</a>
+                                                    </p>
+                                                </div>
+                                            </div>
                                         </div>
-                                        <div class="col-lg-8">
-                                            <p class="text-left"><strong>@HttpContext.Current.Session["nome"].ToString()</strong></p>
-                                            <p class="text-left small">@HttpContext.Current.Session["email"].ToString()</p>
-                                            <p class="text-left">
-                                                <a href="@Url.Action(null, "contas/Deslogar")" class="btn btn-primary btn-block btn-sm">Deslogar</a>
-                                            </p>
+                                    </li>
+                                    <li class="divider"></li>
+                                    <li>
+                                        <div class="navbar-login navbar-login-session">
+                                            <div class="row">
+                                                <div class="col-lg-12">
+                                                    <p>
+                                                        <a href="@Url.Action(@HttpContext.Current.Session["id"].ToString(), "contas/Details")" class="btn btn-primary btn-block">Minha Conta</a>
+                                                        <a href="#" class="btn btn-danger btn-block">Trocar senha</a>
+                                                    </p>
+                                                </div>
+                                            </div>
                                         </div>
-                                    </div>
-                                </div>
+                                    </li>
+                                </ul>
                             </li>
-                            <li class="divider"></li>
-                            <li>
-                                <div class="navbar-login navbar-login-session">
-                                    <div class="row">
-                                        <div class="col-lg-12">
-                                            <p>
-                                                <a href="@Url.Action(@HttpContext.Current.Session["id"].ToString(), "contas/Details")" class="btn btn-primary btn-block" >Minha Conta</a>
-                                                <a href="#" class="btn btn-danger btn-block">Trocar senha</a>
-                                            </p>
+                        }
+
+
+
+
+
+
+
+
+                        else
+                        {
+                            <li><p class="navbar-text">Já tem uma conta ?</p></li>
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><b>Login</b> <span class="caret"></span></a>
+                                <ul id="login-dp" class="dropdown-menu">
+                                    <li>
+                                        <div class="row">
+                                            <div class="col-md-12">
+
+                                                <form class="form" role="form" method="post" action="@Url.Action("Logar", "contas")" accept-charset="UTF-8" id="login-nav">
+                                                    <div class="form-group">
+                                                        <label class="sr-only" for="exampleInputEmail2">Email</label>
+                                                        <input type="email" class="form-control" name="email" placeholder="Email" required>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label class="sr-only" for="exampleInputPassword2">Password</label>
+                                                        <input type="password" class="form-control" id="exampleInputPassword2" name="senha" placeholder="Password" required>
+                                                        <div class="help-block text-right"><a href="">Esqueceu a senha?</a></div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <button type="submit" class="btn btn-primary btn-block">Logar</button>
+                                                    </div>
+
+                                                </form>
+                                            </div>
+                                            <div class="bottom text-center">
+                                                Novo aqui? <a href="#"><b>Cadastre-se</b></a>
+                                            </div>
                                         </div>
-                                    </div>
-                                </div>
+                                    </li>
+                                </ul>
                             </li>
+                        }
                         </ul>
-                    </li>
-                </ul>
-               
 
+
+                   
+                    
+                </div>
             </div>
         </div>
-    </div>
-    <ul class="nav navbar-nav navbar-right">
-       
-    <a href="http://localhost:55585/contas/Login">
-                <span class="glyphicon glyphicon-user"></span>
-          </a>
+        <div class="container body-content">
+            @RenderBody()
+            <hr />
+            <footer>
+                <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+            </footer>
+        </div>
 
-    </ul>
-
-    <div class="container body-content">
-        @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
-        </footer>
-    </div>
+    }
 
     <script src="~/Scripts/jquery-1.10.2.min.js"></script>
     <script src="~/Scripts/bootstrap.min.js"></script>
