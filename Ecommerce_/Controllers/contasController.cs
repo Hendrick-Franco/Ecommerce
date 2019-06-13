@@ -16,10 +16,24 @@ namespace Ecommerce_.Controllers
         private Context db = new Context();
         
         // GET: contas
-        public ActionResult Index()
+        public ActionResult Index(string pesquisa)
         {
 
-            return View();
+            var homeprodutos = db.produto.Where(c => c.vitrine == true).ToList();
+            return View(homeprodutos);
+        }
+        public ActionResult SearchBar(string pesquisa)
+        {
+            if (pesquisa == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            produto produto = db.produto.Find(pesquisa);
+            if (produto == null)
+            {
+                return HttpNotFound();
+            }
+            return View(produto);
         }
 
         // GET: contas/Details/5/perfil

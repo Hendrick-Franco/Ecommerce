@@ -46,7 +46,7 @@ namespace Ecommerce_.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "produtoId,preco,descricao,vitrine")] produto produto)
+        public ActionResult Create([Bind(Include = "nome,produtoId,preco,descricao,vitrine")] produto produto)
         {
             if (ModelState.IsValid)
             {
@@ -80,7 +80,7 @@ namespace Ecommerce_.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "produtoId,preco,descricao,vitrine")] produto produto)
+        public ActionResult Edit([Bind(Include = "nome,produtoId,preco,descricao,vitrine")] produto produto)
         {
             if (ModelState.IsValid)
             {

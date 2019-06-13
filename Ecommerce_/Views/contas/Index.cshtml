@@ -1,9 +1,50 @@
-﻿
-
-@{
+﻿@{
     ViewBag.Title = "Index";
 }
 
 <h2>Pagina Inicial</h2>
+<p>
+    @using (Html.BeginForm("Details", "produtoes"))
+    {
+        @Html.TextBox("id", null, new { @class = "searchBox" })
+        @Html.Hidden("Details", "id")
 
 
+    <input type="submit" id="search" value="Pesquisar" />    }
+</p>
+@model IEnumerable<Ecommerce_.Models.produto>
+<table>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.nome)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.preco)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.descricao)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.vitrine)
+        </th>
+        <th>
+        </th>
+    </tr>
+    @foreach (var item in Model)
+    {
+    <tr>
+        <th>
+            @Html.DisplayFor(modelItem => item.nome)
+        </th>
+        <td>
+            @Html.DisplayFor(modelItem => item.preco)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.descricao)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.vitrine)
+        </td>
+    </tr>
+    }
+</table>
